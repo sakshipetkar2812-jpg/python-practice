@@ -1,0 +1,178 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=claude:viewport-fit-sides content=cover><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>.md-table{overflow-x:auto}@media print{.md-table{overflow-x:visible}}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<h1>Python Day 3: Conditional Logic (if / elif / else)</h1>
+<p>Legend: 🟢 Easy · 🟡 Medium · 🟠 Hard · 🔴 Interview / Technical Test
+Rule: Pehle logic 3-4 lines me likho, phir code. Answer ke liye hint maango, solution nahi.</p>
+<hr>
+<h2>5-Minute Revision (from Day 2)</h2>
+<p>R1. 🟡 <code>print(-7 // 2)</code> ka output?
+R2. 🟡 <code>print(2 + 3 * 4 ** 2)</code> ka output?
+R3. 🟢 <code>print(5 &gt; 3 and 2 &gt; 4)</code> ka output?
+R4. 🟡 Fix: <code>if x = 5:</code>
+R5. 🟡 Number ka last digit nikalne ke liye kaun sa operator use hoga?</p>
+<hr>
+<h2>Teach (short, Hinglish)</h2>
+<p><strong>Condition kya hai?</strong> Program ko decision lena sikhata hai: &quot;agar ye sach hai to ye karo, nahi to wo karo.&quot;</p>
+<p><strong>Syntax</strong></p>
+<pre><code class="language-python">if condition1:
+    # condition1 True ho to
+elif condition2:
+    # condition2 True ho to
+else:
+    # koi bhi True na ho to
+</code></pre>
+<p><strong>Important rules</strong></p>
+<ul>
+<li>Condition ke baad <code>:</code> zaroori hai.</li>
+<li><strong>Indentation</strong> (4 spaces) hi block batata hai. Ye galat hua to <code>IndentationError</code>.</li>
+<li><code>elif</code> aur <code>else</code> optional hain. <code>else</code> me condition nahi likhte.</li>
+<li>Sirf <strong>pehli True condition</strong> ka block chalta hai, baaki skip.</li>
+<li>Multiple conditions: <code>and</code>, <code>or</code>, <code>not</code>.</li>
+<li><strong>Nested if</strong> = if ke andar if.</li>
+<li><strong>Ternary</strong>: <code>result = &quot;Even&quot; if n % 2 == 0 else &quot;Odd&quot;</code></li>
+<li><strong>Falsy values</strong>: <code>0</code>, <code>0.0</code>, <code>&quot;&quot;</code>, <code>[]</code>, <code>None</code>, <code>False</code>. Baaki sab Truthy.</li>
+</ul>
+<p><strong>Common mistakes</strong></p>
+<ul>
+<li><code>=</code> ki jagah <code>==</code> na likhna.</li>
+<li><code>elif</code> ki jagah har baar alag <code>if</code> likhna (sab chal jaate hain).</li>
+<li>Indentation galat.</li>
+<li><code>if x == 1 or 2:</code> (ye hamesha True hota hai). Sahi: <code>if x == 1 or x == 2:</code> ya <code>x in (1, 2)</code>.</li>
+</ul>
+<p><strong>Real-world use</strong>: login check, discount, tax slab, ATM PIN, eligibility.</p>
+<p><strong>Interview point</strong>: <code>if</code> vs <code>elif</code> vs multiple <code>if</code>; ternary operator; truthy/falsy values.</p>
+<hr>
+<h2>Section A: Output Prediction</h2>
+<ol>
+<li>🟢</li>
+</ol>
+<pre><code class="language-python">x = 10
+if x &gt; 5:
+    print(&#34;A&#34;)
+else:
+    print(&#34;B&#34;)
+</code></pre>
+<ol start="2">
+<li>🟢</li>
+</ol>
+<pre><code class="language-python">x = 5
+if x &gt; 5:
+    print(&#34;A&#34;)
+elif x == 5:
+    print(&#34;B&#34;)
+else:
+    print(&#34;C&#34;)
+</code></pre>
+<ol start="3">
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">x = 10
+if x &gt; 5:
+    print(&#34;A&#34;)
+if x &gt; 8:
+    print(&#34;B&#34;)
+elif x &gt; 2:
+    print(&#34;C&#34;)
+</code></pre>
+<ol start="4">
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">if 0:
+    print(&#34;zero&#34;)
+elif &#34;&#34;:
+    print(&#34;empty&#34;)
+elif &#34;0&#34;:
+    print(&#34;string zero&#34;)
+</code></pre>
+<ol start="5">
+<li>🟡 <code>x = 7; print(&quot;big&quot; if x &gt; 5 else &quot;small&quot;)</code></li>
+<li>🟡 <code>print(&quot;Yes&quot; if [] else &quot;No&quot;)</code></li>
+<li>🟠</li>
+</ol>
+<pre><code class="language-python">a, b = 4, 9
+if a &gt; 3:
+    if b &lt; 5:
+        print(&#34;X&#34;)
+    else:
+        print(&#34;Y&#34;)
+else:
+    print(&#34;Z&#34;)
+</code></pre>
+<h2>Section B: Debugging</h2>
+<ol start="8">
+<li>🟢 Fix:</li>
+</ol>
+<pre><code class="language-python">x = 5
+if x &gt; 3
+    print(&#34;big&#34;)
+</code></pre>
+<ol start="9">
+<li>🟡 Fix:</li>
+</ol>
+<pre><code class="language-python">n = 4
+if n % 2 = 0:
+    print(&#34;even&#34;)
+</code></pre>
+<ol start="10">
+<li>🟡 Fix indentation:</li>
+</ol>
+<pre><code class="language-python">age = 20
+if age &gt;= 18:
+print(&#34;Adult&#34;)
+</code></pre>
+<ol start="11">
+<li>🟠 Ye code <code>3</code> ke liye bhi &quot;Two or Three&quot; nahi, &quot;Other&quot; kyun deta hai? Fix karo:</li>
+</ol>
+<pre><code class="language-python">n = 3
+if n == 2 or 3:
+    print(&#34;Two or Three&#34;)
+else:
+    print(&#34;Other&#34;)
+</code></pre>
+<h2>Section C: Basic Code Writing</h2>
+<ol start="12">
+<li>🟢 Number input lo. Positive, negative ya zero print karo.</li>
+<li>🟢 Number input lo. Even ya odd print karo.</li>
+<li>🟢 Age input lo. 18 ya zyada ho to &quot;Eligible to vote&quot;, nahi to &quot;Not eligible&quot;.</li>
+<li>🟢 Do numbers me se bada print karo.</li>
+<li>🟡 Teen numbers me se sabse bada print karo (equal values ka dhyan rakho).</li>
+</ol>
+<h2>Section D: Real-Life Logic</h2>
+<ol start="17">
+<li>🟡 <strong>Leap year</strong>: year input lo. Rule: 4 se divisible, lekin 100 se divisible ho to 400 se bhi hona chahiye.</li>
+<li>🟡 <strong>Grade calculator</strong>: marks 90+ A, 75-89 B, 60-74 C, 40-59 D, 40 se kam Fail. (Marks 0-100 ke bahar ho to &quot;Invalid&quot;.)</li>
+<li>🟡 <strong>Electricity bill</strong>: 100 units tak ₹5/unit, 101-200 ke liye ₹7/unit (sirf extra units par), 200 ke baad ₹10/unit. Total bill nikalo.</li>
+<li>🟡 <strong>Salary</strong>: basic salary input lo. 20000 se kam ho to bonus 10%, warna 5%. Total salary print karo.</li>
+<li>🟡 <strong>Age category</strong>: 0-12 Child, 13-19 Teen, 20-59 Adult, 60+ Senior.</li>
+<li>🟠 <strong>Triangle check</strong>: teen sides input lo. Valid triangle hai ya nahi, aur valid ho to type (Equilateral, Isosceles, Scalene).</li>
+</ol>
+<h2>Section E: Interview Questions</h2>
+<ol start="23">
+<li>🔴 <code>if</code>, <code>elif</code>, aur multiple <code>if</code> me kya difference hai? Example do.</li>
+<li>🔴 Python ke Truthy aur Falsy values kaun se hain? Kam se kam 5 falsy values likho.</li>
+<li>🔴 Ternary operator kya hai? Kab use nahi karna chahiye?</li>
+<li>🔴 MCQ: <code>if &quot;False&quot;:</code> ka result kya hoga? (a) Block nahi chalega (b) Block chalega (c) Error (d) None</li>
+</ol>
+<h2>Section F: Technical Test Style</h2>
+<ol start="27">
+<li>🔴 <strong>Login Check</strong>: Input: username aur password (alag lines). Agar username <code>admin</code> aur password <code>1234</code> ho to <code>Login Successful</code>, agar sirf username sahi ho to <code>Wrong Password</code>, warna <code>User Not Found</code>.</li>
+<li>🔴 <strong>Shipping Charge</strong>: Input: order amount aur city type (<code>metro</code> ya <code>other</code>). Rules: amount 1000+ ho to free shipping. Warna metro ke liye ₹40, other ke liye ₹70. Output: final shipping charge.</li>
+<li>🔴 <strong>Largest of Three (without max())</strong>: teen numbers input lo, sabse bada nikalo. Sample: <code>4 9 7</code> → <code>9</code>.</li>
+</ol>
+<h2>Section G: Challenge</h2>
+<ol start="30">
+<li>🟠 <strong>Quadratic Roots Type</strong>: <code>a</code>, <code>b</code>, <code>c</code> input lo. Discriminant <code>b*b - 4*a*c</code> se batao: &quot;Two real roots&quot;, &quot;One real root&quot; ya &quot;No real roots&quot;. (<code>a = 0</code> ho to pehle &quot;Not a quadratic&quot; print karo.)</li>
+</ol>
+<hr>
+<h2>Logic-Building Help (jab atak jao)</h2>
+<ol>
+<li>Input kya hai? 2. Output kya hai? 3. Pehle copy par manually solve karo.</li>
+<li>Konsi conditions ka order matter karta hai? (jaise grade me upar se neeche ya leap year me 400 pehle)</li>
+<li>Edge cases: 0, negative, equal values, boundary (jaise 18, 100, 40).</li>
+</ol>
+<hr>
+<h2>Day 3 Report (solve ke baad bharo)</h2>
+<p>Attempted: __ · Correct: __ · Wrong: __ · Accuracy: __ %
+Strong topics: ______ · Weak topics: ______</p>
+
+</body></html>
