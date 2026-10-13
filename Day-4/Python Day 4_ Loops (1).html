@@ -1,0 +1,182 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=claude:viewport-fit-sides content=cover><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>.md-table{overflow-x:auto}@media print{.md-table{overflow-x:visible}}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<h1>Python Day 4: Loops (for, while, range, break, continue, pass)</h1>
+<p>Legend: 🟢 Easy · 🟡 Medium · 🟠 Hard · 🔴 Interview / Technical Test
+Rule: Pehle logic 3-4 lines me likho, phir code. Hint maango, solution nahi.</p>
+<hr>
+<h2>5-Minute Revision (from Day 3)</h2>
+<p>R1. 🟡 <code>print(&quot;Yes&quot; if [] else &quot;No&quot;)</code> ka output?
+R2. 🟡 <code>if x == 2 or 3:</code> me kya galti hai? Sahi kaise likhoge?
+R3. 🟢 Leap year ka rule likho.
+R4. 🟡 <code>if</code> aur <code>elif</code> me kya difference hai?
+R5. 🟡 Teen numbers me se sabse bada nikalne ka code likho (max() ke bina).</p>
+<hr>
+<h2>Teach (short, Hinglish)</h2>
+<p><strong>Loop kya hai?</strong> Same kaam ko baar-baar karne ke liye. 10 baar print karna ho to 10 line nahi likhte, loop lagate hain.</p>
+<p><strong>1. for loop</strong> (jab pata ho kitni baar chalana hai ya kisi sequence par chalana hai)</p>
+<pre><code class="language-python">for i in range(5):
+    print(i)        # 0 1 2 3 4
+</code></pre>
+<p><strong>2. range()</strong></p>
+<ul>
+<li><code>range(5)</code> → 0 se 4</li>
+<li><code>range(2, 6)</code> → 2 se 5</li>
+<li><code>range(1, 10, 2)</code> → 1, 3, 5, 7, 9 (step 2)</li>
+<li><code>range(5, 0, -1)</code> → 5, 4, 3, 2, 1</li>
+<li><strong>End value include nahi hota.</strong></li>
+</ul>
+<p><strong>3. while loop</strong> (jab condition True rehne tak chalana ho)</p>
+<pre><code class="language-python">i = 1
+while i &lt;= 5:
+    print(i)
+    i += 1          # update bhoolna mat, warna infinite loop
+</code></pre>
+<p><strong>4. break</strong>: loop turant band. <strong>5. continue</strong>: is round ko skip karke agle round par. <strong>6. pass</strong>: kuch nahi karta, sirf khali jagah bharta hai.</p>
+<p><strong>Common mistakes</strong></p>
+<ul>
+<li><code>while</code> me counter update na karna (infinite loop).</li>
+<li><code>range(1, n)</code> likhna jab <code>n</code> bhi chahiye (sahi: <code>range(1, n + 1)</code>).</li>
+<li>Loop ke andar <code>print</code> ka indentation galat.</li>
+<li>Loop ke andar variable ko reset kar dena (jaise <code>total = 0</code> loop ke andar).</li>
+</ul>
+<p><strong>Pattern for sum/count/product</strong></p>
+<pre><code class="language-python">total = 0
+for i in range(1, 6):
+    total += i
+print(total)        # 15
+</code></pre>
+<p><strong>for vs while</strong>: for = known count / sequence. while = unknown count / condition based.</p>
+<p><strong>Real-world use</strong>: bill items add karna, ATM retry attempts, data process karna, menu repeat karna.</p>
+<hr>
+<h2>Section A: Output Prediction</h2>
+<ol>
+<li>🟢 <code>for i in range(4): print(i)</code></li>
+<li>🟢 <code>for i in range(2, 7): print(i, end=&quot; &quot;)</code></li>
+<li>🟢 <code>for i in range(10, 0, -3): print(i, end=&quot; &quot;)</code></li>
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">i = 1
+while i &lt; 5:
+    print(i, end=&#34; &#34;)
+    i += 2
+</code></pre>
+<ol start="5">
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">for i in range(1, 8):
+    if i == 4:
+        break
+    print(i, end=&#34; &#34;)
+</code></pre>
+<ol start="6">
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">for i in range(1, 8):
+    if i % 3 == 0:
+        continue
+    print(i, end=&#34; &#34;)
+</code></pre>
+<ol start="7">
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">total = 0
+for i in range(1, 5):
+    total += i
+print(total)
+</code></pre>
+<ol start="8">
+<li>🟠</li>
+</ol>
+<pre><code class="language-python">for i in range(3):
+    pass
+print(i)
+</code></pre>
+<ol start="9">
+<li>🟠 <code>print(len(range(0, 20, 3)))</code></li>
+</ol>
+<h2>Section B: Debugging</h2>
+<ol start="10">
+<li>🟢 Fix (1 se 5 print karna hai):</li>
+</ol>
+<pre><code class="language-python">for i in range(1, 5):
+    print(i)
+</code></pre>
+<ol start="11">
+<li>🟡 Fix (infinite loop):</li>
+</ol>
+<pre><code class="language-python">i = 1
+while i &lt;= 5:
+    print(i)
+</code></pre>
+<ol start="12">
+<li>🟡 Fix (sum of 1 to n hamesha 0 aa raha hai):</li>
+</ol>
+<pre><code class="language-python">n = 5
+for i in range(1, n + 1):
+    total = 0
+    total += i
+print(total)
+</code></pre>
+<ol start="13">
+<li>🟠 Fix (3 se 1 tak countdown chahiye, kuch print nahi ho raha):</li>
+</ol>
+<pre><code class="language-python">for i in range(3, 0):
+    print(i)
+</code></pre>
+<h2>Section C: Basic Code Writing</h2>
+<ol start="14">
+<li>🟢 1 se 10 tak numbers print karo.</li>
+<li>🟢 10 se 1 tak numbers print karo.</li>
+<li>🟢 1 se 20 tak sirf even numbers print karo (do tareeke se).</li>
+<li>🟢 Number <code>n</code> input lo, uski multiplication table print karo (<code>5 x 1 = 5</code> format).</li>
+<li>🟢 1 se <code>n</code> tak ka sum nikalo.</li>
+<li>🟡 1 se <code>n</code> tak ke numbers ka product (factorial) nikalo.</li>
+</ol>
+<h2>Section D: Logic Building</h2>
+<ol start="20">
+<li>🟡 1 se 100 tak me kitne numbers 7 se divisible hain? Count print karo.</li>
+<li>🟡 User se numbers lo jab tak woh <code>0</code> na daale (while loop). Sabka sum print karo.</li>
+<li>🟡 <code>n</code> input lo. Uske saare divisors print karo.</li>
+<li>🟡 <code>n</code> input lo. 1 se <code>n</code> tak ke sirf odd numbers ka sum nikalo.</li>
+<li>🟠 <strong>Password retry</strong>: sahi password <code>python123</code>. User ko maximum 3 attempts do. Sahi ho to &quot;Access Granted&quot; aur loop band (<code>break</code>), 3 galat ho to &quot;Account Locked&quot;.</li>
+<li>🟠 Ek number input lo. Uske digits ki sankhya (count) nikalo bina <code>len()</code> ke (hint: baar-baar <code>// 10</code>).</li>
+</ol>
+<h2>Section E: Interview Questions</h2>
+<ol start="26">
+<li>🔴 <code>for</code> aur <code>while</code> me kya difference hai? Kab konsa use karoge?</li>
+<li>🔴 <code>break</code>, <code>continue</code> aur <code>pass</code> me difference example ke saath batao.</li>
+<li>🔴 Python ke loop me <code>else</code> block hota hai. Ye kab chalta hai? (Output predict karo)</li>
+</ol>
+<pre><code class="language-python">for i in range(3):
+    print(i)
+else:
+    print(&#34;Done&#34;)
+</code></pre>
+<ol start="29">
+<li>🔴 MCQ: <code>range(1, 10, 3)</code> kya deta hai? (a) 1,4,7 (b) 1,4,7,10 (c) 1,3,6,9 (d) 4,7,10</li>
+</ol>
+<h2>Section F: Technical Test Style</h2>
+<ol start="30">
+<li>🔴 <strong>Sum of Even and Odd</strong>: Input: <code>n</code>. Output: 1 se <code>n</code> tak even numbers ka sum aur odd numbers ka sum, alag-alag. Sample: <code>10</code> → <code>30 25</code>.</li>
+<li>🔴 <strong>Count Digits Greater Than 5</strong>: Input: ek positive integer. Output: kitne digits 5 se bade hain. Sample: <code>78234</code> → <code>2</code>.</li>
+</ol>
+<h2>Section G: Challenge</h2>
+<ol start="32">
+<li>🟠 <strong>Number Guessing Game</strong>: Program ek secret number (jaise 7) rakhta hai. User guess karta hai. Har galat guess par &quot;Too high&quot; ya &quot;Too low&quot; batao. Sahi hone par kitne attempts me guess kiya, wo print karo.</li>
+</ol>
+<hr>
+<h2>Logic-Building Help (jab atak jao)</h2>
+<ol>
+<li>Loop kitni baar chalega? (Fixed hai to <code>for</code>, condition-based hai to <code>while</code>)</li>
+<li>Loop se pehle kaun se variables chahiye? (<code>total = 0</code>, <code>count = 0</code>)</li>
+<li>Har round me kya hona chahiye?</li>
+<li>Loop kab rukna chahiye?</li>
+<li>Edge cases: <code>n = 0</code>, <code>n = 1</code>, negative input.</li>
+</ol>
+<hr>
+<h2>Day 4 Report (solve ke baad bharo)</h2>
+<p>Attempted: __ · Correct: __ · Wrong: __ · Accuracy: __ %
+Strong topics: ______ · Weak topics: ______
+Concepts to revise: ______</p>
+
+</body></html>
