@@ -1,0 +1,258 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=claude:viewport-fit-sides content=cover><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>.md-table{overflow-x:auto}@media print{.md-table{overflow-x:visible}}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<h1>Python Day 5: Nested Loops, Patterns, Digit Problems</h1>
+<p>Legend: 🟢 Easy · 🟡 Medium · 🟠 Hard · 🔴 Interview / Technical Test
+Rule: Pehle copy par pattern ko rows aur columns me todo, phir code. Hint maango, solution nahi.</p>
+<hr>
+<h2>5-Minute Revision (from Day 4)</h2>
+<p>R1. 🟡 <code>for i in range(1, 8): if i % 3 == 0: continue; print(i, end=&quot; &quot;)</code> ka output?
+R2. 🟡 <code>print(len(range(0, 20, 3)))</code> ka output?
+R3. 🟢 <code>range(5, 0, -1)</code> kya deta hai?
+R4. 🔴 <code>break</code>, <code>continue</code> aur <code>pass</code> me difference batao.
+R5. 🟡 1 se <code>n</code> tak ka sum nikalne ka code likho.</p>
+<hr>
+<h2>Teach (short, Hinglish)</h2>
+<p><strong>Nested loop kya hai?</strong> Loop ke andar loop. Bahar wala (outer) loop <strong>rows</strong> sambhalta hai, andar wala (inner) loop <strong>columns</strong>.</p>
+<pre><code class="language-python">for i in range(3):          # outer: 3 rows
+    for j in range(4):      # inner: 4 columns
+        print(&#34;*&#34;, end=&#34; &#34;)
+    print()                 # row khatam, nayi line
+</code></pre>
+<p><strong>Kaise kaam karta hai:</strong> outer ka 1 round hota hai, tab inner <strong>poora</strong> chalta hai. Phir outer ka agla round. Yani total chalne ki sankhya = outer x inner.</p>
+<p><strong>Pattern banane ka formula</strong></p>
+<ol>
+<li>Kitni rows hain? (outer loop)</li>
+<li>Har row me kitne columns/stars/numbers? (inner loop ki range)</li>
+<li>Row number <code>i</code> ke saath columns ka kya relation hai? (<code>i</code>, <code>n - i</code>, <code>2*i - 1</code>)</li>
+<li>Spaces chahiye? Unke liye alag inner loop.</li>
+<li>Har row ke baad <code>print()</code> (nayi line).</li>
+</ol>
+<p><strong>Digit problems ka standard logic</strong></p>
+<pre><code class="language-python">n = 472
+while n &gt; 0:
+    digit = n % 10      # last digit nikalo
+    n = n // 10         # last digit hata do
+</code></pre>
+<p><strong>Common mistakes</strong></p>
+<ul>
+<li>Row ke baad <code>print()</code> bhoolna (sab ek line me aa jaata hai).</li>
+<li>Inner loop ki range me row number <code>i</code> use na karna.</li>
+<li>Digit loop me original <code>n</code> badal dena aur baad me use karna (pehle copy rakho: <code>temp = n</code>).</li>
+<li><code>print(end=&quot; &quot;)</code> aur <code>print()</code> ka confusion.</li>
+</ul>
+<p><strong>Real-world use</strong>: tables, grids, matrix, seating layout, calendar print karna.</p>
+<hr>
+<h2>Section A: Output Prediction</h2>
+<ol>
+<li>🟢</li>
+</ol>
+<pre><code class="language-python">for i in range(2):
+    for j in range(3):
+        print(&#34;*&#34;, end=&#34;&#34;)
+    print()
+</code></pre>
+<ol start="2">
+<li>🟢</li>
+</ol>
+<pre><code class="language-python">for i in range(1, 4):
+    for j in range(1, 3):
+        print(i, j)
+</code></pre>
+<ol start="3">
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">for i in range(1, 4):
+    for j in range(i):
+        print(&#34;*&#34;, end=&#34;&#34;)
+    print()
+</code></pre>
+<ol start="4">
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">for i in range(1, 4):
+    for j in range(1, 4):
+        if i == j:
+            print(i * j, end=&#34; &#34;)
+    print()
+</code></pre>
+<ol start="5">
+<li>🟡</li>
+</ol>
+<pre><code class="language-python">count = 0
+for i in range(3):
+    for j in range(4):
+        count += 1
+print(count)
+</code></pre>
+<ol start="6">
+<li>🟠</li>
+</ol>
+<pre><code class="language-python">for i in range(3):
+    for j in range(3):
+        if j == 1:
+            break
+        print(i, j)
+</code></pre>
+<h2>Section B: Debugging</h2>
+<ol start="7">
+<li>🟢 Fix (3 rows ka square chahiye, sab ek line me aa raha hai):</li>
+</ol>
+<pre><code class="language-python">for i in range(3):
+    for j in range(3):
+        print(&#34;*&#34;, end=&#34; &#34;)
+</code></pre>
+<ol start="8">
+<li>🟡 Fix (right triangle chahiye, par square ban raha hai):</li>
+</ol>
+<pre><code class="language-python">for i in range(1, 5):
+    for j in range(4):
+        print(&#34;*&#34;, end=&#34;&#34;)
+    print()
+</code></pre>
+<ol start="9">
+<li>🟡 Fix (digit sum hamesha 0 aa raha hai):</li>
+</ol>
+<pre><code class="language-python">n = 123
+s = 0
+while n &gt; 0:
+    s = n % 10
+    n = n // 10
+print(s)
+</code></pre>
+<ol start="10">
+<li>🟠 Fix (number ka reverse chahiye, 321 ki jagah galat aa raha hai):</li>
+</ol>
+<pre><code class="language-python">n = 123
+rev = 0
+while n &gt; 0:
+    rev = rev + n % 10
+    n = n // 10
+print(rev)
+</code></pre>
+<h2>Section C: Star Patterns (Code Writing)</h2>
+<p><code>n = 5</code> maan ke likho:</p>
+<ol start="11">
+<li>🟢 Square (n x n stars)</li>
+<li>🟢 Rectangle (3 rows, 6 columns)</li>
+<li>🟢 Right triangle:</li>
+</ol>
+<pre><code>*
+**
+***
+****
+*****
+</code></pre>
+<ol start="14">
+<li>🟡 Inverted triangle (5 stars se 1 star tak).</li>
+<li>🟡 Right-aligned triangle (spaces + stars):</li>
+</ol>
+<pre><code>    *
+   **
+  ***
+ ****
+*****
+</code></pre>
+<ol start="16">
+<li>🟠 Pyramid:</li>
+</ol>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********
+</code></pre>
+<ol start="17">
+<li>🟠 Hollow square (sirf border par star).</li>
+</ol>
+<h2>Section D: Number Patterns</h2>
+<ol start="18">
+<li>🟢 Har row me row number repeat:</li>
+</ol>
+<pre><code>1
+22
+333
+4444
+</code></pre>
+<ol start="19">
+<li>🟢</li>
+</ol>
+<pre><code>1
+12
+123
+1234
+</code></pre>
+<ol start="20">
+<li>🟡 Inverted:</li>
+</ol>
+<pre><code>12345
+1234
+123
+12
+1
+</code></pre>
+<ol start="21">
+<li>🟡 Floyd's triangle:</li>
+</ol>
+<pre><code>1
+2 3
+4 5 6
+7 8 9 10
+</code></pre>
+<ol start="22">
+<li>🟠 Alternating 0/1 triangle:</li>
+</ol>
+<pre><code>1
+01
+101
+0101
+</code></pre>
+<h2>Section E: Digit Problems</h2>
+<ol start="23">
+<li>🟢 Number ke digits ka sum nikalo.</li>
+<li>🟢 Number ke digits ki sankhya (count) nikalo.</li>
+<li>🟡 Number reverse karo (<code>1234</code> → <code>4321</code>).</li>
+<li>🟡 Palindrome number check karo (<code>121</code> Yes, <code>123</code> No).</li>
+<li>🟡 Number me sabse bada digit nikalo.</li>
+<li>🟠 Number me kitni baar digit <code>d</code> aaya? (<code>d</code> bhi input se lo.)</li>
+</ol>
+<h2>Section F: Interview Questions</h2>
+<ol start="29">
+<li>🔴 Nested loop me total iterations kaise nikalte hain? <code>for i in range(5): for j in range(i)</code> ke liye batao.</li>
+<li>🔴 Nested loop me inner loop ka <code>break</code> outer loop ko rokta hai ya nahi? Example se samjhao.</li>
+<li>🔴 MCQ: <code>print(end=&quot;&quot;)</code> aur <code>print()</code> me kya difference hai? (a) Dono same (b) pehla nayi line nahi deta, doosra deta hai (c) pehla error deta hai (d) Koi output nahi</li>
+</ol>
+<h2>Section G: Technical Test Style</h2>
+<ol start="32">
+<li>🔴 <strong>Multiplication Grid</strong>: Input: <code>n</code>. Output: 1 se <code>n</code> tak ki multiplication table grid (har row space-separated). Sample <code>3</code>:</li>
+</ol>
+<pre><code>1 2 3
+2 4 6
+3 6 9
+</code></pre>
+<ol start="33">
+<li>🔴 <strong>Digit Frequency Check</strong>: Input: ek integer. Output: <code>Yes</code> agar saare digits alag-alag hain, warna <code>No</code>. Sample: <code>1234</code> → <code>Yes</code>, <code>1223</code> → <code>No</code>. (Approach tum decide karo.)</li>
+<li>🟠 <strong>Diamond Pattern</strong>: Input: <code>n</code>. Output: diamond of stars. Sample <code>n = 3</code>:</li>
+</ol>
+<pre><code>  *
+ ***
+*****
+ ***
+  *
+</code></pre>
+<hr>
+<h2>Logic-Building Help (pattern atak jaye to)</h2>
+<ol>
+<li>Pattern ko rows aur columns me likho. Kitni rows? (outer loop)</li>
+<li>Row <code>i</code> me spaces kitne? Stars kitne? Formula likho (jaise <code>n - i</code>, <code>2*i - 1</code>).</li>
+<li>Choti value (<code>n = 3</code>) par manually dry run karo.</li>
+<li>Pehle simple version banao (square), phir badlo (triangle).</li>
+<li>Edge cases: <code>n = 1</code>, <code>n = 0</code>.</li>
+</ol>
+<p>Digit problems me: <code>n % 10</code> = last digit, <code>n // 10</code> = last digit hatao, loop <code>while n &gt; 0</code>.</p>
+<hr>
+<h2>Day 5 Report (solve ke baad bharo)</h2>
+<p>Attempted: __ · Correct: __ · Wrong: __ · Accuracy: __ %
+Strong topics: ______ · Weak topics: ______
+Patterns jo atke: ______</p>
+
+</body></html>
